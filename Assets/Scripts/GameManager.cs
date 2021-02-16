@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     public GameObject explosionPrefab;
     public GameObject castle;
     public GameObject powerUpPrefab;
-    public GameObject protector;
+    public GameObject protectorPrefab;
     public GameObject marbleProtector;
     public Text powerUpInfoText;
     public GameObject powerUpImage;
@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
     public GameObject waterPrefab;
     public GameObject infoCamera;
 
+    private GameObject protector;
     private GameObject currentPowerUp;
     private int score = 0;
     private int remainingEnemyCount = 1;
@@ -81,6 +82,9 @@ public class GameManager : MonoBehaviour
         {
             levelManager = new LevelManager();
         }
+
+        if (protector != null) Destroy(protector);
+        protector = Instantiate(protectorPrefab);
 
         destroyedEnemyCount = new Dictionary<AbstractEnemy.EnemyColor, int>();
         levelManager.LoadLevel(currentLevel);
